@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>JS Assignment Closures</title>
+  </head>
+  <body>
+    <script src="./script.js"></script>
+    <pre>
+
+        <center><h1> JS Coding Assignment : Closures</h1></center>
+        <h2>1.  Question 1</h2>
+
+       
+        >> Answer
+
+        <textarea>
+            
+          function counter(){
+            var counter = 0;
+        
+            function IncreaseCounter() {
+                return counter += 1;
+            };
+        
+            return IncreaseCounter;
+        }
+        
+        var counter = counter();
+        alert(counter()); // pop-up window appears with value 1
+        alert(counter()); // pop-up window appears with value 2
+        alert(counter()); // pop-up window appears with value 3
+        alert(counter()); // pop-up window appears with value 4
+        </textarea>
+    
+    <h2> 2. Question 2</h2>
+
+       
+    >> Answer
+
+       <textarea>
+  
+        let count = 0;
+        (function () {
+          if (count === 0) {
+            let count = 1;
+            console.log(count); // What is logged? -- 1 will be logged
+          }
+          console.log(count); // What is logged? -- 0 will be logged
+        })();
+        
+      Explanation :- First count variable is declared in the block scope that's why it is only
+                     accessible by the first console statement.Second console can't access it.
+                     count variable is only accessible within the block scope of the anonymous function
+                     But Second count variable is declared in the global scope and it's 
+                     accessible throughout the entire script.
+    </textarea>
+
+
+
+        <h2>3. Question 3</h2>
+
+            >> Answer
+
+            <textarea style="width: 800px;height: 330px;">
+            
+              for (var i = 0; i < 3; i++) {
+                setTimeout(function log() {
+                  console.log(i); // What is logged? -- 3,3,3 will be logged.
+                }, 1000);
+              }
+
+        Explanation :- The for loop increments the value of i from 0 to 3, console.log 
+        function is called for each iteration of the loop. But setTimeout function is 
+        asynchronous, the log function is not executed until after the for loop has completed.
+        By the time the log function is executed, the value of i has already been incremented 
+        to 3 and the loop has completed.
+
+        So all three console.log function will log the value 3.
+
+        </textarea>
+
+    <h2>4. Question 4</h2>
+
+    Write a code to calculate area of a rectangle using inner function. In this case outer function should accept parameter length and inner function should accept parameter breadth.
+
+    >> Answer
+
+    <textarea>
+        
+       function calcArea(length) {
+        return function(breadth) {
+          return length * breadth;
+    }
+  }
+  
+  // Example
+  
+  let calcRecArea = calcArea(15); // length = 15
+  let area = calcRecArea(5); // breadth = 5
+  console.log(area); // Output will be 75
+      
+    </textarea>
+
+    <h2>5. Question 5</h2>
+
+    Take a variable in outer function and create an inner function to increase the counter every time it is called
+
+    >> Answer
+
+    <textarea>
+    
+      function counterfunc() {
+        let count = 0;
+        return function() {
+          count++;
+          return count;
+        }
+      }
+      
+      const counter = counterfunc();
+      
+      console.log(counter()); // Output: 1
+      console.log(counter()); // Output: 2
+      console.log(counter()); // Output: 3
+      console.log(counter()); // Output: 4
+      console.log(counter()); // Output: 5
+      
+    </textarea>
+    
+    <h2>6. Question 6</h2>
+
+    >> Answer
+
+    <textarea>
+    
+      Print Output
+
+      var a = 12;
+      (function () {
+        alert(a);
+      })();
+
+      Output = 12 will be displayed in an alert window.
+      
+    </textarea>
+
+    <h2>7. Question 7</h2>
+
+    >> Answer
+
+    <textarea>
+    
+              var a = 10;
+                var x = (function () {
+                  var a = 12;
+                  return function () {
+                  alert(a);
+                     };
+                    })();
+                    x();
+         
+        Output = 12 will be displayed in an alert window.             
+      
+    </textarea>
+
+    <h2>8. Question 8</h2>
+
+    >> Answer
+
+    <textarea>
+    
+      var globalVar = "xyz";
+
+    (function outerFunc(outerArg) {
+    var outerVar = 'a';
+    
+    (function innerFunc(innerArg) {
+    var innerVar = 'b';
+    
+    console.log(
+        "outerArg = " + outerArg + "\n" +
+        "innerArg = " + innerArg + "\n" +
+        "outerVar = " + outerVar + "\n" +
+        "innerVar = " + innerVar + "\n" +
+        "globalVar = " + globalVar);
+    
+    })(456);
+  })(123);
+      
+      Output :-
+
+      outerArg = 123 
+      innerArg = 456 
+      outerVar = a   
+      innerVar = b   
+      globalVar = xyz
+
+    </textarea>
+    </pre>
+  </body>
+</html>
